@@ -10,7 +10,7 @@ class Hourly extends Component {
   }
 
   componentDidMount() {
-    const url = 'http://api.wunderground.com/api/bcdeab02bf65e45e/hourly/q/CA/San_Francisco.json';
+    const url = 'https://api.wunderground.com/api/bcdeab02bf65e45e/hourly/q/CA/San_Francisco.json';
 
     fetch(url).then(response => response.json())
       .then(json => {
