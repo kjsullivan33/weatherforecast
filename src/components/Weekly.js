@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Daily from './Daily/Daily';
 import './Weekly.css';
-import { getWeather } from '../helpers/getWeather';
+
 
 class Weekly extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Weekly extends Component {
   }
 
   componentDidMount() {
-    getWeather('forecast10day');
+    
   }
 
   

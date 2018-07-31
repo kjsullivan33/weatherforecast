@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
 import './Hourly.css';
-import { getWeather } from '../../helpers/getWeather';
+
 
 class Hourly extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Hourly extends Component {
 
   componentDidMount() {
 
-    getWeather('hourly');
+  
   }
 
 

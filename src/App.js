@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
 
     this.state = {
+      latitude: '33.9',
+      longitude: '-84.9',
       showWeekly: false,
       showHourly: false,
       showCurrent: true};
@@ -41,13 +43,21 @@ class App extends Component {
   changeLocation = (city, state) => {
 
   }
-  
-  
+  // componentDidMount(){
+  // navigator.geolocation.getCurrentPosition(location => {
+  //   this.setState({
+  //     latitude: location.coords.latitude,
+  //     longitude: location.coords.longitude
+  //   })
+  //   });
+  // }
   render() {
   
   let current = true;
   if (this.state.showCurrent){
-    current = (<CurrentWeather url={this.state.currentWeatherUrl}/>)
+    current = (<CurrentWeather 
+      latitude={this.state.latitude}
+      longitude={this.state.longitude}/>)
   } else {
     current = (<div>
                 <button 
