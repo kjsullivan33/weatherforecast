@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
 import './Hourly.css';
+import { getWeather } from '../../helpers/getWeather';
 
 class Hourly extends Component {
   constructor(props) {
@@ -10,17 +11,8 @@ class Hourly extends Component {
   }
 
   componentDidMount() {
-    const url = 'https://api.wunderground.com/api/bcdeab02bf65e45e/hourly/q/CA/San_Francisco.json';
 
-    fetch(url).then(response => response.json())
-      .then(json => {
-        console.log(json.hourly_forecast);
-        this.setState({
-          hourlyForecast: json.hourly_forecast,
-          loaded: true
-        });
-      });
-    console.log(this.state.hourlyForecast);
+    getWeather('hourly');
   }
 
 

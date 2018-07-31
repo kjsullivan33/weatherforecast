@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Daily from './Daily/Daily';
 import './Weekly.css';
+import { getWeather } from '../helpers/getWeather';
 
 class Weekly extends Component {
   constructor(props) {
@@ -10,15 +11,7 @@ class Weekly extends Component {
   }
 
   componentDidMount() {
-    const url = 'https://api.wunderground.com/api/bcdeab02bf65e45e/forecast10day/q/CA/San_Francisco.json';
-
-    fetch(url).then(response => response.json())
-      .then(json => {
-        console.log(json.forecast.simpleforecast.forecastday);
-        this.setState({ forecast: json.forecast.simpleforecast.forecastday,
-                        loaded: true});
-      });
-    console.log(this.state.forecast);
+    getWeather('forecast10day');
   }
 
   
