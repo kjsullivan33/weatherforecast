@@ -1,0 +1,21 @@
+.weekly-box {
+  box-shadow: 3px 3px 3px 3px #627187;
+  background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 50px;
+  width: 1200px;
+  overflow-y:scroll;
+}
+
+@media (max-width: 500px) {
+  body {
+    width: 100%;
+  }
+  .weekly-box{
+    width: 95%;
+    margin: auto;
+  }
+}
+  

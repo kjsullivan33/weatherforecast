@@ -1,0 +1,28 @@
+.current-weather {
+  background-image: linear-gradient(to bottom,
+   #6483b1, #599eb8, #72b4b3, #9ec6af, 
+   #ccd5b7);
+  width: 20%;
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px 3px #627187;
+  margin: auto;
+  margin-top: 10%;
+  padding: 10px;
+}
+
+.current-temp {
+  font-family: 'Prosto One', cursive;
+  font-size: 40px;
+  color: white;
+}
+
+.condition-pic {
+  width: 20%;
+  padding: 0px;
+}
+
+.conditions {
+  font-family: 'Prosto One', cursive;
+  font-size: 26px;
+  color: navy;
+}

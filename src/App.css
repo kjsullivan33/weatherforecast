@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+
+.btn {
+  font-family: 'Prosto One', cursive;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	border-radius:10px;
+	border:1px solid #d6bcd6;
+  display:inline-block;
+  margin: 20px 0px 10px 10px;
+	cursor:pointer;
+	color:#1d5563;
+	font-size:20px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.btn:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.btn:active{
+	position:relative;
+	top:1px;
+}
+

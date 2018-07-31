@@ -1,0 +1,13 @@
+.hourly-box {
+  width: 20%;
+  margin: auto;
+  overflow-y:scroll;
+  height: 500px;
+
+}
+
+@media (max-width: 500px) {
+  .hourly-box {
+    width: 65%;
+  }
+}
