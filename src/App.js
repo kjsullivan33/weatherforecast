@@ -69,11 +69,15 @@ class App extends Component {
   
   let weekly = true;
   if (this.state.showWeekly) {
-    weekly = (<Weekly url={this.state.weeklyUrl}/>);
+    weekly = (<Weekly 
+      latitude={this.state.latitude}
+      longitude={this.state.longitude}/>);
   }
   let hourly = true;
   if (this.state.showHourly) {
-    hourly = (<Hourly url={this.state.hourlyUrl}/>);
+    hourly = (<Hourly 
+      latitude={this.state.latitude}
+      longitude={this.state.longitude}/>);
   }
     return (
       <div className="App">

@@ -2,7 +2,7 @@
   background-image: linear-gradient(to bottom,
    #6483b1, #599eb8, #72b4b3, #9ec6af, 
    #ccd5b7);
-  width: 20%;
+  width: 300px;
   border-radius: 20px;
   box-shadow: 3px 3px 3px 3px #627187;
   margin: auto;
@@ -25,4 +25,10 @@
   font-family: 'Prosto One', cursive;
   font-size: 26px;
   color: navy;
+}
+
+@media (max-width: 500px) {
+  .currentWeather {
+    width:300px;
+  } 
 }

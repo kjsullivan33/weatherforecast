@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Daily from './Daily/Daily';
+import { createUrl } from '../helpers/createUrl';
 import './Weekly.css';
 
 
@@ -11,7 +12,16 @@ class Weekly extends Component {
   }
 
   componentDidMount() {
-    
+    const url = createUrl('forecast10day', this.props.latitude, this.props.longitude);
+
+    fetch(url).then(response => response.json())
+      .then(json => {
+        console.log(json.forecast.simpleforecast.forecastday);
+        this.setState({
+          forecast: json.forecast.simpleforecast.forecastday,
+          loaded: true
+        });
+      });
   }
 
   

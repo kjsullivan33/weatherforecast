@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
+import { createUrl } from '../../helpers/createUrl';
 import './Hourly.css';
 
 
@@ -11,7 +12,15 @@ class Hourly extends Component {
   }
 
   componentDidMount() {
+    const url = createUrl('hourly', this.props.latitude, this.props.longitude);
 
+    fetch(url).then(response => response.json())
+      .then(json => {
+        console.log("json response: ");
+        console.log(json);
+        this.setState({hourlyForecast: json.hourly_forecast, loaded: true});
+
+      });
   
   }
 

@@ -1,6 +1,8 @@
+//http://api.wunderground.com/api/bcdeab02bf65e45e/conditions/q/33.933886199999996,-84.4902245
+
 import React, { Component } from 'react';
 import './CurrentWeather.css';
-
+import { createUrl } from '../../helpers/createUrl';
 
 
 
@@ -19,19 +21,14 @@ class CurrentWeather extends Component {
   }
 
 
-  url = (type) => {
-    const uri = 'https://api.wunderground.com/api/';
-    const key = 'bcdeab02bf65e45e';
-    const url = uri + key + '/' + type + '/q/' + this.props.latitude + ',' + this.props.longitude;
-    console.log('data from getWeather function: ' + url);
-    return url;
-  }
+  
    
   
 
   componentDidMount() {
   
-   const url = this.url('conditions');
+  const url = createUrl('conditions', this.props.latitude, this.props.longitude);
+   
    console.log("url on did mount: " + url);
     
     fetch(url).then(response => response.json())
@@ -44,11 +41,6 @@ class CurrentWeather extends Component {
           conditions: json.current_observation.weather
         });
         
-    // this.setState({
-    //   currentTemp: data.current_observation.temp_f,
-    //   conditionPic: data.current_observation.icon_url,
-    //   conditions: data.current_observation.weather
-    // });
   });
 }
 
