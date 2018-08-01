@@ -3,6 +3,7 @@ import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import Weekly from './components/Weekly';
 import Hourly from './components/Hourly/Hourly';
 import ChangeLocation from './components/ChangeLocation/ChangeLocation';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './App.css';
 
 class App extends Component {
@@ -10,12 +11,29 @@ class App extends Component {
     super(props);
 
     this.state = {
-      latitude: '33.9',
-      longitude: '-84.9',
+      coords: {
+        lat: '33.9',
+        lng: '-84.9'
+      },
+      address: '',
       showWeekly: false,
       showHourly: false,
       showCurrent: true};
   }
+
+  handleChange = address => {
+    this.setState({ address });
+  };
+
+  handleSelect = (address) => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(coords => {
+        console.log("coords: " , coords);
+        this.setState({ coords });
+      })
+      .catch(error => console.error('Error', error));
+  };
 
   toggleWeekly = () =>{
     const doesShow = this.state.showWeekly;
@@ -55,9 +73,16 @@ class App extends Component {
   
   let current = true;
   if (this.state.showCurrent){
-    current = (<CurrentWeather 
-      latitude={this.state.latitude}
-      longitude={this.state.longitude}/>)
+    current = (
+      <div>
+      <ChangeLocation
+        change={this.handleChange}
+        select={this.handleSelect}
+        address={this.state.address} />
+      <CurrentWeather 
+        latitude={this.state.coords.lat}
+        longitude={this.state.coords.lng}/>
+      </div>)
   } else {
     current = (<div>
                 <button 
@@ -70,18 +95,18 @@ class App extends Component {
   let weekly = true;
   if (this.state.showWeekly) {
     weekly = (<Weekly 
-      latitude={this.state.latitude}
-      longitude={this.state.longitude}/>);
+      latitude={this.state.coords.lat}
+      longitude={this.state.coords.lng}/>);
   }
   let hourly = true;
   if (this.state.showHourly) {
     hourly = (<Hourly 
-      latitude={this.state.latitude}
-      longitude={this.state.longitude}/>);
+      latitude={this.state.coords.lat}
+      longitude={this.state.coords.lng}/>);
   }
     return (
       <div className="App">
-        <ChangeLocation />
+        
         {current}
         <button className="btn" onClick={this.toggleWeekly}>Daily Forecast</button>
         <button className="btn" onClick={this.toggleHourly}>Hourly Forecast</button>

@@ -9,6 +9,7 @@
     "mocha": "^5.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-places-autocomplete": "^7.2.0",
     "react-scripts": "1.1.4",
     "sinon": "^6.1.4"
   },

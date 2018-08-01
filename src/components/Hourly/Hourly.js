@@ -34,7 +34,8 @@ class Hourly extends Component {
             key={index}
             time={item.FCTTIME.civil}
             temp={item.temp.english}
-            conditions={item.condition} />
+            conditions={item.condition}
+            day={item.FCTTIME.weekday_name} />
         );
       });
     } else {

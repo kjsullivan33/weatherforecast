@@ -5,8 +5,8 @@
   flex-direction: row;
   margin: auto;
   margin-top: 50px;
-  width: 1200px;
-  overflow-y:scroll;
+  width: 800px;
+  overflow-x:scroll;
 }
 
 @media (max-width: 500px) {
