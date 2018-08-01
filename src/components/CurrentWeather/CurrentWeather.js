@@ -15,7 +15,10 @@ class CurrentWeather extends Component {
               url: '',
               currentTemp: '',
               conditionPic: '',
-              conditions: ''
+              conditions: '',
+              city: 'Marietta',
+              state: 'GA',
+              country: 'US'
             }
     
   }
@@ -38,7 +41,10 @@ class CurrentWeather extends Component {
         this.setState({
           currentTemp: json.current_observation.temp_f + "\xB0 F",
           conditionPic: json.current_observation.icon_url,
-          conditions: json.current_observation.weather
+          conditions: json.current_observation.weather,
+          city: json.current_observation.display_location.city,
+          state: json.current_observation.display_location.state,
+          country: json.current_observation.display_location.country
         });
         
   });
@@ -50,8 +56,9 @@ class CurrentWeather extends Component {
   render() {
     return (
       <div className="current-weather">
-        <div className="current-temp">{this.state.currentTemp}</div>
+        <p className="location">{this.state.city}, {this.state.state}, {this.state.country}</p>
         <img className="condition-pic" src={this.state.conditionPic} alt={this.state.conditions}/>
+        <div className="current-temp">{this.state.currentTemp}</div>
         <p className="conditions">{this.state.conditions} </p>
       </div>
     )

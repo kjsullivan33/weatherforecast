@@ -10,6 +10,11 @@
   padding: 10px;
 }
 
+.location {
+  font-family: 'Prosto One', cursive;
+  color: white;
+  font-size: 20px;
+}
 .current-temp {
   font-family: 'Prosto One', cursive;
   font-size: 40px;
