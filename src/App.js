@@ -26,11 +26,12 @@ class App extends Component {
   };
 
   handleSelect = (address) => {
+    console.log("address" + address);
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(coords => {
         console.log("coords: " , coords);
-        this.setState({ coords });
+        this.setState({ coords: coords, address: address });
       })
       .catch(error => console.error('Error', error));
   };
@@ -81,7 +82,8 @@ class App extends Component {
         address={this.state.address} />
       <CurrentWeather 
         latitude={this.state.coords.lat}
-        longitude={this.state.coords.lng}/>
+        longitude={this.state.coords.lng}
+        location={this.state.address}/>
       </div>)
   } else {
     current = (<div>

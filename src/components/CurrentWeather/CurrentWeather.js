@@ -15,9 +15,7 @@ class CurrentWeather extends Component {
               currentTemp: '',
               conditionPic: '',
               conditions: '',
-              city: 'Marietta',
-              state: 'GA',
-              country: 'US'
+              address: 'Marietta, GA, USA'
             }
     
   }
@@ -26,13 +24,13 @@ class CurrentWeather extends Component {
 
     fetchWeather('conditions', this.props.latitude, this.props.longitude).then(data => {
       console.log(data);
+      const address = data.city + ', ' + data.state + ', ' + data.country;
+      console.log(address);
       this.setState({
         currentTemp: data.currentTemp,
         conditionPic: data.conditionPic,
         conditions: data.conditions,
-        city: data.city,
-        state: data.state,
-        country: data.country
+        address: address
       });
     });
 }
@@ -44,9 +42,7 @@ componentWillReceiveProps(nextprops) {
         currentTemp: data.currentTemp,
         conditionPic: data.conditionPic,
         conditions: data.conditions,
-        city: data.city,
-        state: data.state,
-        country: data.country
+        address: this.props.location
       });
     });
 }
@@ -54,7 +50,7 @@ componentWillReceiveProps(nextprops) {
   render() {
     return (
       <div className="current-weather" >
-        <p className="location" >{this.state.city}, {this.state.state}, {this.state.country}</p>
+        <p className="location" >{this.state.address}</p>
         <img className="condition-pic" src={this.state.conditionPic} alt={this.state.conditions} />
         <div className="current-temp" >{this.state.currentTemp}</div>
         <p className="conditions" >{this.state.conditions} </p>
