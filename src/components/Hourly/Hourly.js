@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
-import { createUrl } from '../../helpers/createUrl';
+import { fetchWeather } from '../../helpers/fetchWeather';
 import './Hourly.css';
 
 
@@ -12,15 +12,14 @@ class Hourly extends Component {
   }
 
   componentDidMount() {
-    const url = createUrl('hourly', this.props.latitude, this.props.longitude);
 
-    fetch(url).then(response => response.json())
-      .then(json => {
-        console.log("json response: ");
-        console.log(json);
-        this.setState({hourlyForecast: json.hourly_forecast, loaded: true});
-
+    fetchWeather('hourly', this.props.latitude, this.props.longitude).then(data => {
+      console.log(data);
+      this.setState({
+        hourlyForecast: data.hourlyForecast,
+        loaded: true
       });
+    });
   
   }
 

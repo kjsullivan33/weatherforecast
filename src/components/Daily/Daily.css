@@ -1,5 +1,6 @@
 .daily-box {
-  width: 250px;
+  flex-shrink: 0;
+  width: 100px;
   height: 300px;
   background: linear-gradient(0deg, rgba(77,74,116,0.788953081232493) 0%, rgba(68,68,78,0.8869922969187675) 35%, rgba(152,188,195,0.850577731092437) 100%);
   box-shadow: 3px 3px 3px 3px grey;
@@ -33,7 +34,7 @@
 }
 
 .daily-conditions {
-  color: rgb(123, 243, 53);
+  color: rgb(135, 182, 108);
 }
 
 @media (max-width: 500px) {

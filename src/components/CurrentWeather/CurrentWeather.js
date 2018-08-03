@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import './CurrentWeather.css';
-import { createUrl } from '../../helpers/createUrl';
+import { fetchWeather } from '../../helpers/fetchWeather';
 
 
 
@@ -12,7 +12,6 @@ class CurrentWeather extends Component {
     super(props);
 
     this.state = {
-              url: '',
               currentTemp: '',
               conditionPic: '',
               conditions: '',
@@ -23,76 +22,35 @@ class CurrentWeather extends Component {
     
   }
 
-
-  handleChange(){
-    const url = createUrl('conditions', this.props.latitude, this.props.longitude);
-
-    console.log("url on did mount: " + url);
-
-    fetch(url).then(response => response.json())
-      .then(json => {
-        console.log("json response: ");
-        console.log(json);
-        this.setState({
-          currentTemp: json.current_observation.temp_f + "\xB0 F",
-          conditionPic: json.current_observation.icon_url,
-          conditions: json.current_observation.weather,
-          city: json.current_observation.display_location.city,
-          state: json.current_observation.display_location.state,
-          country: json.current_observation.display_location.country
-        });
-
-      });
-  }
-   
-  
-
   componentDidMount() {
-  
-  const url = createUrl('conditions', this.props.latitude, this.props.longitude);
-   
-   console.log("url on did mount: " + url);
-    
-    fetch(url).then(response => response.json())
-      .then(json => {
-        console.log("json response: ");
-        console.log(json);
-        this.setState({
-          currentTemp: json.current_observation.temp_f + "\xB0 F",
-          conditionPic: json.current_observation.icon_url,
-          conditions: json.current_observation.weather,
-          city: json.current_observation.display_location.city,
-          state: json.current_observation.display_location.state,
-          country: json.current_observation.display_location.country
-        });
-        
-  });
+
+    fetchWeather('conditions', this.props.latitude, this.props.longitude).then(data => {
+      console.log(data);
+      this.setState({
+        currentTemp: data.currentTemp,
+        conditionPic: data.conditionPic,
+        conditions: data.conditions,
+        city: data.city,
+        state: data.state,
+        country: data.country
+      });
+    });
 }
 
 componentWillReceiveProps(nextprops) {
-  console.log(nextprops);
-  const url = createUrl('conditions', nextprops.latitude, nextprops.longitude);
-
-  console.log("url on did mount: " + url);
-
-  fetch(url).then(response => response.json())
-    .then(json => {
-      console.log("json response: ");
-      console.log(json);
+  fetchWeather('conditions', nextprops.latitude, nextprops.longitude).then(data => {
+      console.log(data);
       this.setState({
-        currentTemp: json.current_observation.temp_f + "\xB0 F",
-        conditionPic: json.current_observation.icon_url,
-        conditions: json.current_observation.weather,
-        city: json.current_observation.display_location.city,
-        state: json.current_observation.display_location.state,
-        country: json.current_observation.display_location.country
+        currentTemp: data.currentTemp,
+        conditionPic: data.conditionPic,
+        conditions: data.conditions,
+        city: data.city,
+        state: data.state,
+        country: data.country
       });
-
     });
 }
     
-    
-  
   render() {
     return (
       <div className="current-weather" >
