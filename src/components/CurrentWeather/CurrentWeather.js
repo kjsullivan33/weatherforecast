@@ -21,17 +21,19 @@ class CurrentWeather extends Component {
   }
 
   componentDidMount() {
-
-    fetchWeather('conditions', this.props.latitude, this.props.longitude).then(data => {
-      console.log(data);
-      const address = data.city + ', ' + data.state + ', ' + data.country;
-      console.log(address);
-      this.setState({
-        currentTemp: data.currentTemp,
-        conditionPic: data.conditionPic,
-        conditions: data.conditions,
-        address: address
-      });
+    navigator.geolocation.getCurrentPosition((pos) => {
+      fetchWeather('conditions', pos.coords.latitude, pos.coords.longitude)
+        .then(data => {
+          console.log(data);
+          const address = data.city + ', ' + data.state + ', ' + data.country;
+          console.log(address);
+          this.setState({
+            currentTemp: data.currentTemp,
+            conditionPic: data.conditionPic,
+            conditions: data.conditions,
+            address: address
+          });
+        });
     });
 }
 

@@ -21,6 +21,8 @@ class App extends Component {
       showCurrent: true};
   }
 
+  
+
   handleChange = address => {
     this.setState({ address });
   };
