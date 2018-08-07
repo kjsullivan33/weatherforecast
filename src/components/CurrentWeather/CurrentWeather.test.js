@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, mount} from 'enzyme';
 import { expect} from 'chai';
 import CurrentWeather from './CurrentWeather';
 import Adapter from 'enzyme-adapter-react-16';
@@ -11,7 +11,7 @@ configure({ adapter: new Adapter() });
 //  condition icon
 //  conditions
 describe('CurrentWeather', () => {
-  let currentWeather = shallow(<CurrentWeather />);
+  let currentWeather = mount(<CurrentWeather />);
   // let props = {
   //               currentTemp: 70,
   //               conditionPic: 'partlcloudy.jpg',
@@ -56,10 +56,10 @@ describe('CurrentWeather', () => {
   //CurrentWeather does not test for any state.  It will get
   //the state passed through props from another component
 
-  it('initializes currentTemp, condition pic, and conditions in `state`', () => {
-    expect(currentWeather.state()).to.deep.equal(
-      { currentTemp: '', conditionPic: '', conditions: ''});
-  });
+  // it('initializes currentTemp, condition pic, and conditions in `state`', () => {
+  //   expect(currentWeather.state()).to.deep.equal(
+  //     { currentTemp: '', conditionPic: '', conditions: ''});
+  // });
 //test the functionality when the user interacts with it
 //When the user interacts with my component, what happens?
 

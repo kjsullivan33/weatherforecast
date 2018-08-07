@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow} from 'enzyme';
 import { expect } from 'chai';
 import Hour from './Hour';
 
@@ -15,24 +15,31 @@ configure({ adapter: new Adapter() });
 
 describe('Hour', () => {
   const hour = shallow(<Hour />);
+  // const props = {
+  //   day: 'Monday',
+  //   time: '7:00',
+  //   temp: '78',
+  //   conditions: 'partly cloudy'
+
+  // }
   it('renders properly', () => {
     expect(hour.find('div')).to.have.length(1);
   });
 
-  const time = <p className='time'>Time: </p>;
-  it('contains a p to display the time', () => {
-    expect(hour.contains(time)).to.equal(true);
-  });
+  // const time = <li className='time'>Time: {props.time}</li>;
+  // it('contains a li to display the time', () => {
+  //   expect(hour.contains(time)).to.equal(true);
+  // });
 
-  const temp = <p className='hour-temp'>Temperature</p>;
-  it('contains a p to display the temp', () => {
-    expect(hour.contains(temp)).to.equal(true);
-  });
+  // const temp = <li className='hour-temp'>Temperature: {props.temp}</li>;
+  // it('contains a li to display the temp', () => {
+  //   expect(hour.contains(temp)).to.equal(true);
+  // });
 
-  const conditions = <p className='hourly-conditions'>Conditions: </p>;
-  it('contains a p to display the hourly conditions', () => {
-    expect(hour.contains(conditions)).to.equal(true);
-  });
+  // const conditions = <li className='hourly-conditions'>Conditions: {props.conditions} </li>;
+  // it('contains a li to display the hourly conditions', () => {
+  //   expect(hour.contains(conditions)).to.equal(true);
+  // });
 });
 
 //test for the props the component receives

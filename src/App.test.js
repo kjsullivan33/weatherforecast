@@ -1,10 +1,10 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import { expect } from 'chai';
 import App from './App';
-import CurrentWeather from './components/CurrentWeather';
+import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import Weekly from './components/Weekly';
-import Hourly from './components/Hourly';
+import Hourly from './components/Hourly/Hourly';
 
 import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() });
@@ -16,7 +16,7 @@ configure({ adapter: new Adapter() });
 //  Hourly Forecast Component
 
 describe('App', () => {
-  const app = shallow(<App />);
+  const app = mount(<App />);
   it('renders the CurrentWeather component', () => {
     expect(app.find(CurrentWeather)).to.have.length(1);
   });
