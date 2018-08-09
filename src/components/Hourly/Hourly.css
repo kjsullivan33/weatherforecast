@@ -1,9 +1,11 @@
 .hourly-box {
-  width: 375px;
+  display: flex;
+  flex-direction: column;
   margin: auto;
-  overflow-y:scroll;
-  height: 500px;
-
+  margin-top: 5px;
+  width: 90%;
+  height: 625px;
+  overflow-y:auto;
 }
 
 @media (max-width: 500px) {

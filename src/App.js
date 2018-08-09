@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
+import { fetchWeather } from '../src/helpers/fetchWeather';
 import Weekly from './components/Weekly';
 import Hourly from './components/Hourly/Hourly';
 import ChangeLocation from './components/ChangeLocation/ChangeLocation';
@@ -16,9 +17,13 @@ class App extends Component {
         lng: '-84.9'
       },
       address: '',
+      displayLocation: '',
       showWeekly: false,
       showHourly: false,
-      showCurrent: true};
+      currentTemp: '',
+      conditionPic: '',
+      conditions: '',
+    };
   }
 
   
@@ -33,7 +38,7 @@ class App extends Component {
       .then(results => getLatLng(results[0]))
       .then(coords => {
         console.log("coords: " , coords);
-        this.setState({ coords: coords, address: address });
+        this.setState({ coords: coords, diplayLocation: address });
       })
       .catch(error => console.error('Error', error));
   };
@@ -57,45 +62,40 @@ class App extends Component {
     this.setState({
       showWeekly: false,
       showHourly: false,
-      showCurrent: true
     });
   }
 
-  changeLocation = (city, state) => {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      fetchWeather('conditions', pos.coords.latitude, pos.coords.longitude)
+        .then(data => {
+          console.log(data);
+          const address = data.city + ', ' + data.state + ', ' + data.country;
+          console.log(address);
+          this.setState({
+            currentTemp: data.currentTemp,
+            conditionPic: data.conditionPic,
+            conditions: data.conditions,
+            displayLocation: address
+          });
+        });
+    });
+  }
 
+  componentWillReceiveProps(nextprops) {
+    fetchWeather('conditions', nextprops.latitude, nextprops.longitude).then(data => {
+      console.log(data);
+      this.setState({
+        currentTemp: data.currentTemp,
+        conditionPic: data.conditionPic,
+        conditions: data.conditions,
+        displayLocation: this.state.address
+      });
+    });
   }
-  // componentDidMount(){
-  // navigator.geolocation.getCurrentPosition(location => {
-  //   this.setState({
-  //     latitude: location.coords.latitude,
-  //     longitude: location.coords.longitude
-  //   })
-  //   });
-  // }
+
   render() {
-  
-  let current = true;
-  if (this.state.showCurrent){
-    current = (
-      <div>
-      <ChangeLocation
-        change={this.handleChange}
-        select={this.handleSelect}
-        address={this.state.address} />
-      <CurrentWeather 
-        latitude={this.state.coords.lat}
-        longitude={this.state.coords.lng}
-        location={this.state.address}/>
-      </div>)
-  } else {
-    current = (<div>
-                <button 
-                  className="btn" 
-                  onClick={this.toggleCurrent}>Current Forecast
-                </button>
-               </div>);
-  }
-  
+    
   let weekly = true;
   if (this.state.showWeekly) {
     weekly = (<Weekly 
@@ -110,12 +110,24 @@ class App extends Component {
   }
     return (
       <div className="App">
-        
-        {current}
-        <button className="btn" onClick={this.toggleWeekly}>Daily Forecast</button>
-        <button className="btn" onClick={this.toggleHourly}>Hourly Forecast</button>
+        <div className="main-display">
+          <ChangeLocation
+            change={this.handleChange}
+            select={this.handleSelect}
+            address={this.state.address} />
+          <CurrentWeather
+            currentTemp={this.state.currentTemp}
+            conditionPic={this.state.conditionPic}
+            conditions={this.state.conditions}
+            location={this.state.displayLocation} />
+        </div>
+        <div className="button-menu">
+          <button className="btn" onClick={this.toggleWeekly}>Daily Forecast</button>
+          <button className="btn" onClick={this.toggleHourly}>Hourly Forecast</button>
+        </div>
         {weekly}
         {hourly}
+        
       </div>
     );
   }

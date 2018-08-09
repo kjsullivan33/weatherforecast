@@ -2,60 +2,20 @@
 
 import React, { Component } from 'react';
 import './CurrentWeather.css';
-import { fetchWeather } from '../../helpers/fetchWeather';
+
 
 
 
 
 class CurrentWeather extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-              currentTemp: '',
-              conditionPic: '',
-              conditions: '',
-              address: 'Marietta, GA, USA'
-            }
-    
-  }
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      fetchWeather('conditions', pos.coords.latitude, pos.coords.longitude)
-        .then(data => {
-          console.log(data);
-          const address = data.city + ', ' + data.state + ', ' + data.country;
-          console.log(address);
-          this.setState({
-            currentTemp: data.currentTemp,
-            conditionPic: data.conditionPic,
-            conditions: data.conditions,
-            address: address
-          });
-        });
-    });
-}
-
-componentWillReceiveProps(nextprops) {
-  fetchWeather('conditions', nextprops.latitude, nextprops.longitude).then(data => {
-      console.log(data);
-      this.setState({
-        currentTemp: data.currentTemp,
-        conditionPic: data.conditionPic,
-        conditions: data.conditions,
-        address: this.props.location
-      });
-    });
-}
     
   render() {
     return (
       <div className="current-weather" >
-        <p className="location" >{this.state.address}</p>
-        <img className="condition-pic" src={this.state.conditionPic} alt={this.state.conditions} />
-        <div className="current-temp" >{this.state.currentTemp}</div>
-        <p className="conditions" >{this.state.conditions} </p>
+        <p className="location" >{this.props.location}</p>
+        <img className="condition-pic" src={this.props.conditionPic} alt={this.props.conditions} />
+        <div className="current-temp" >{this.props.currentTemp}</div>
+        <p className="conditions" >{this.props.conditions} </p>
       </div>
     )
   }

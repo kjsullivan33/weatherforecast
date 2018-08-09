@@ -1,5 +1,11 @@
 .hourly-list {
-  list-style-type: none;
-  list-style-position: inside;
-  text-align: left;
+  font-family: "Roboto", "Open Sans", sans-serif;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: #9EADD6;
+  line-height: 2;
+  width: 100%;
+  border: 1px solid rgba(30, 38, 57,0.5);
+  background-color:rgba(30, 38, 57,0.7); 
+  padding: 5px;
 }
