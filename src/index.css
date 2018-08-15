@@ -1,12 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   height:100%;
-  padding: 0;
-  margin: 0;
+  font-size: 62.5%;
   background:url('./assets/pexels-photo-1054220.jpeg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+body {
+  box-sizing: border-box;
 }
 
 

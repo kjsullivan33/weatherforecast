@@ -1,5 +1,4 @@
 .currentWeather {
-  position: relative;
   text-align: center;
   margin-top: 30px;
   padding: 10px;
@@ -10,24 +9,23 @@
   font-family: "Roboto", "Open Sans", sans-serif;
   color: rgb(27, 24, 39);
   opacity: 1.5;
-  font-size: 26px;
+  font-size: 2.6rem;
 }
 .current-temp {
   font-family: "Roboto Slab", "Open Sans", serif;
-  font-size: 70px;
+  font-size: 7rem;
   color: white;
 }
 
 .condition-pic {
-  float: left;
-  margin-right: 20px;
+  margin-right: 2rem;
   width: 80px;
   padding: 0px;
 }
 
 .conditions {
   font-family: "Roboto", "Open Sans", sans-serif;
-  font-size: 32px;
+  font-size: 3.2rem;
   color:rgb(27, 24, 39);
 }
 

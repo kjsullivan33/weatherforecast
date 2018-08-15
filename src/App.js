@@ -4,6 +4,7 @@ import { fetchWeather } from '../src/helpers/fetchWeather';
 import Weekly from './components/Weekly';
 import Hourly from './components/Hourly/Hourly';
 import ChangeLocation from './components/ChangeLocation/ChangeLocation';
+import Footer from './Footer/Footer';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './App.css';
 
@@ -110,7 +111,7 @@ class App extends Component {
   }
     return (
       <div className="App">
-        <div className="main-display">
+        <header className="main-display">
           <ChangeLocation
             change={this.handleChange}
             select={this.handleSelect}
@@ -120,14 +121,16 @@ class App extends Component {
             conditionPic={this.state.conditionPic}
             conditions={this.state.conditions}
             location={this.state.displayLocation} />
-        </div>
+        </header>
         <div className="button-menu">
           <button className="btn" onClick={this.toggleWeekly}>Daily Forecast</button>
           <button className="btn" onClick={this.toggleHourly}>Hourly Forecast</button>
         </div>
+        <div className="detail-display">
         {weekly}
         {hourly}
-        
+        </div>
+        <Footer />
       </div>
     );
   }
