@@ -39,7 +39,18 @@ class App extends Component {
       .then(results => getLatLng(results[0]))
       .then(coords => {
         console.log("coords: " , coords);
-        this.setState({ coords: coords, diplayLocation: address });
+        fetchWeather('conditions', coords.lat, coords.lng)
+        .then(data => {
+          console.log(data);
+          console.log(address);
+          this.setState({
+            currentTemp: data.currentTemp,
+            conditionPic: data.conditionPic,
+            conditions: data.conditions,
+            displayLocation: address,
+            address: ''
+          });
+        });
       })
       .catch(error => console.error('Error', error));
   };
@@ -83,17 +94,6 @@ class App extends Component {
     });
   }
 
-  componentWillReceiveProps(nextprops) {
-    fetchWeather('conditions', nextprops.latitude, nextprops.longitude).then(data => {
-      console.log(data);
-      this.setState({
-        currentTemp: data.currentTemp,
-        conditionPic: data.conditionPic,
-        conditions: data.conditions,
-        displayLocation: this.state.address
-      });
-    });
-  }
 
   render() {
     

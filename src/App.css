@@ -12,21 +12,23 @@
   text-align: center;
   background-color: rgba(2, 4, 34, 0.5);
   padding: 1rem;
+  border-radius: 2px;
 }
 
 .button-menu {
-  width: 35%;
-  margin: 3rem auto;
+  width: 50%;
+  margin: 3rem 32%;
 
 }
 .btn {
   font-family: "Roboto", "Open Sans", sans-serif;
   display: inline-block;
-	box-shadow: 3px 4px 0px 0px #3803276c;
+  margin-right: 4rem;
+	box-shadow: 0px 4px 20px rgba(2, 4, 34, 0.5);
 	background-color:rgba(122, 13, 73, 0.2);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
 	border-radius:2px;
-	border:1px solid #2504258c;
+	border:1px solid #2504252e;
 	cursor:pointer;
 	color:white;
 	font-size:2rem;
