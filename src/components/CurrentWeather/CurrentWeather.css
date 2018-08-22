@@ -2,7 +2,6 @@
   text-align: center;
   margin-top: 30px;
   padding: 10px;
-  z-index: inherit 2;;
 }
 
 .location {
@@ -31,6 +30,6 @@
 
 @media (max-width: 500px) {
   .currentWeather {
-    width:300px;
+    width:90%;
   } 
 }
