@@ -6,7 +6,7 @@ import Hourly from './components/Hourly/Hourly';
 import ChangeLocation from './components/ChangeLocation/ChangeLocation';
 import Footer from './Footer/Footer';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor(props) {

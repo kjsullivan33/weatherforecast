@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.5",
+    "node-sass": "^4.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-places-autocomplete": "^7.2.0",
@@ -10,18 +12,20 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack --mode production",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "chai-fetch-mock": "^2.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "mocha": "^5.2.0",
-    "chai-fetch-mock": "^2.0.0",
     "fetch-mock": "^6.5.2",
+    "mocha": "^5.2.0",
     "sinon": "^6.1.4",
-    "sinon-chai": "^3.2.0"
+    "sinon-chai": "^3.2.0",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
   }
 }

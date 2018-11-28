@@ -1,7 +1,7 @@
 //http://api.wunderground.com/api/bcdeab02bf65e45e/conditions/q/33.933886199999996,-84.4902245
 
 import React, { Component } from 'react';
-import './CurrentWeather.css';
+import './CurrentWeather.scss';
 
 
 

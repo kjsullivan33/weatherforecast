@@ -1,5 +1,5 @@
 import React from 'react';
-import './Hour.css';
+import './Hour.scss';
 
 const hour =(props) => {
   

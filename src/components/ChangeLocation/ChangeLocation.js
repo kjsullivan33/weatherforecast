@@ -1,7 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import './ChangeLocation.css';
-import '../Spinner/Spinner.css';
+import './ChangeLocation.scss';
+import '../Spinner/Spinner.scss';
 
 
 const changeLocation = (props) => {

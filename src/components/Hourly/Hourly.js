@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
 import { fetchWeather } from '../../helpers/fetchWeather';
-import './Hourly.css';
+import './Hourly.scss';
 
 
 class Hourly extends Component {

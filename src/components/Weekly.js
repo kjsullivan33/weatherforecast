@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Daily from './Daily/Daily';
 import { fetchWeather } from '../helpers/fetchWeather';
-import './Weekly.css';
+import './Weekly.scss';
 
 
 class Weekly extends Component {

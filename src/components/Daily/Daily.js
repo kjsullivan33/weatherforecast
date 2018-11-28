@@ -1,5 +1,5 @@
 import React from 'react';
-import './Daily.css';
+import './Daily.scss';
 
 const daily = (props) => {
     return (
