@@ -1,4 +1,6 @@
 
+@import './sass/abstracts/variables.scss';
+
 .App {
   width: 80%;
   margin: auto;
@@ -9,9 +11,9 @@
 .main-display {
   margin: 3rem auto;
   text-align: center;
-  background-color: rgba(2, 4, 34, 0.5);
+  background-color: $primary-color-blue;
   padding: 1rem;
-  border-radius: 2px;
+  border-radius: $default-border-radius;
 }
 
 .button-menu {
@@ -23,29 +25,31 @@
   font-family: "Roboto", "Open Sans", sans-serif;
   display: inline-block;
   margin-right: 4rem;
-	box-shadow: 0px 4px 20px rgba(2, 4, 34, 0.5);
-	background-color:rgba(122, 13, 73, 0.2);
+	box-shadow: 0px 4px 20px $primary-color-blue;
+	background-color:$button-color;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
-	border-radius:2px;
-	border:1px solid #2504252e;
+	border-radius: $default-border-radius;
+	border:1px solid $button-color-border;
 	cursor:pointer;
-	color:white;
-	font-size:2rem;
+	color:$text-white;
+	font-size: $font-size-small;
 	padding:7px 25px;
   text-decoration:none;
-}
-.btn:hover {
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
-	background-color:rgba(49, 11, 32, 0.2);;
-}
-.btn:active{
-	top:1px;
+
+  &:hover {
+	  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	  background-color: $button-color-hover;
+  }
+
+  &:active{
+  	top:1px;
+  }
 }
 
 footer {
   display: absolute;
   text-align: center;
-  font-size: 2.6rem;
+  font-size: $font-size-medium;
   top: 200%;
   left: 50%;
 

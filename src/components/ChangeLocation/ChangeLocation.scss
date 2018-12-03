@@ -1,3 +1,5 @@
+@import '../../sass/abstracts/variables.scss';
+
 .autocomplete-dropdown-container{
   font-family: "Roboto", "Open Sans", sans-serif;
   height: 80px;
@@ -7,8 +9,8 @@
   overflow-y: scroll;
   overflow-x: scroll;
   font-size: 18px;
-  color: rgba(13, 8, 56,2);
-  border-radius: 2px;
+  color: $dropdown-color-primary;
+  border-radius: $default-border-radius;
   opacity: 0.2;
   padding: 10px;
 }
@@ -18,7 +20,7 @@
   padding: 5px;
   font-size: 20px;
   opacity: 0.2;
-  border-radius: 2px;
-  color: lightgrey;
-  background-color: rgba(13, 8, 56,2);
+  border-radius: $default-border-radius;
+  color: $text-light-grey;
+  background-color: $dropdown-color-primary;
 }

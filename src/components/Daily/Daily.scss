@@ -1,18 +1,20 @@
+@import '../../sass/abstracts/variables.scss';
+
 .daily-box {
   font-family: "Roboto", "Open Sans", sans-serif;
   flex-shrink: 0;
   width: 100%;
-  border: 1px solid rgba(30, 38, 57,0.5);
-  background-color:rgba(30, 38, 57,0.7); 
+  border: $default-border-radius solid 1px $primary-color-blue;
+  background-color:$primary-color-blue; 
   padding: 5px;
 }
 
 .day-text {
-  font-size: 20px;
+  font-size: $font-size-medium;
   text-align: auto;
   margin-left: 20px;
   font-weight: bold;
-  color: #9EADD6;
+  color: $text-light-grey;
 }
 
 .forecast-list {
@@ -27,14 +29,14 @@
 }
 
 .temp {
-  color: white;
-  font-size: 36px;
+  color: $text-white;
+  font-size: $font-size-large;
 }
 
 .daily-conditions {
   margin-left: 20px;
-  font-size: 20px;
-  color: #9EADD6;
+  font-size: $font-size-medium;
+  color: $text-light-grey;
 }
 
 @media (max-width: 500px) {

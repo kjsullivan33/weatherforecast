@@ -1,5 +1,6 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
+import Spinner from '../Spinner/Spinner';
 import './ChangeLocation.scss';
 import '../Spinner/Spinner.scss';
 
@@ -20,7 +21,7 @@ const changeLocation = (props) => {
             })}
           />
           <div className="autocomplete-dropdown-container">
-            {loading && <div className=".Loader">Loading...</div>}
+            {loading && <div className=".Loader"><Spinner/></div>}
             {suggestions.map(suggestion => {
               const className = suggestion.active
                 ? 'suggestion-item--active'
