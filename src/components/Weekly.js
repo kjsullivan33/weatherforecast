@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Daily from './Daily/Daily';
+import Spinner from './Spinner/Spinner';
 import { fetchWeather } from '../helpers/fetchWeather';
 import './Weekly.scss';
 
@@ -38,7 +39,7 @@ class Weekly extends Component {
         );
       });
     } else {
-      daily = <p>loading...</p>
+      daily = <Spinner/>
     }
     return(
       <div className="weekly-box">

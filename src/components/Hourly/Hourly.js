@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hour from '../Hour/Hour';
+import Spinner from '../Spinner/Spinner';
 import { fetchWeather } from '../../helpers/fetchWeather';
 import './Hourly.scss';
 
@@ -38,7 +39,7 @@ class Hourly extends Component {
         );
       });
     } else {
-      hourly = <p>loading...</p>
+      hourly = <Spinner/>
     }
     return (
       <div className="hourly-box">
