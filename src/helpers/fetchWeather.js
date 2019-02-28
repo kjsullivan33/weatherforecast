@@ -1,5 +1,7 @@
 const axios = require ('axios');
 
+require('dotenv').config();
+
 
 const openWeatherKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const wundergroundKey = process.env.REACT_APP_WUNDERGROUND_API_KEY;
