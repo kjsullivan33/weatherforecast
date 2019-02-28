@@ -13,34 +13,43 @@ class Weekly extends Component {
   }
 
   componentDidMount() {
-
-    fetchWeather('forecast10day', this.props.latitude, this.props.longitude).then(data => {
-      console.log(data);
-      this.setState({
-        forecast: data.forecast,
-        loaded: true
+    try {
+      fetchWeather('forecast10day', this.props.latitude, this.props.longitude).then(data => {
+        // console.log(data);
+        this.setState({
+          forecast: data,
+          loaded: true
+        });
       });
-    });
+    } catch(err) {
+      console.log(err);
+    }
+    
   }
 
   
   render() {
     let daily = '';
-    if(this.state.loaded) {
-      daily = this.state.forecast.map(item => {
-        return (
-          <Daily
-            key={item.period}
-            day={item.date.pretty}
-            pic={item.icon_url}
-            hi={item.high.fahrenheit}
-            low={item.low.fahrenheit}
-            conditions={item.conditions} />
-        );
-      });
+    if(this.state.loaded && this.state.forecast) {
+      try {
+        daily = this.state.forecast.map((day, index) => {
+          return (
+            <Daily
+              key={index}
+              day={day.day}
+              high={day.high}
+              low={day.low}
+              conditions={day.conditions}
+              humidity={day.humidity} />
+          );
+        });
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      daily = <Spinner/>
-    }
+        daily = <Spinner />
+      }
+      
     return(
       <div className="weekly-box">
         {daily}

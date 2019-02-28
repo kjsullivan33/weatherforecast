@@ -1,87 +1,97 @@
+const axios = require ('axios');
 
 
-// const getLocationCoords = () => {
-//     if ("geolocation" in navigator) {
-//       navigator.geolocation.getCurrentPosition(function (position) {
-//         const {latitude, longitude} = position.coords;
-//         console.log(latitude);
-//         return {latitude, longitude};
-//       });
-//     } 
-//   }
+const openWeatherKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+const wundergroundKey = process.env.REACT_APP_WUNDERGROUND_API_KEY;
 
-// export const createUrl = (type, lat, lon) => {
-  
-//   console.log('data from getWeather function: ' + url);
-//   return url;
-// }
+const convertToF = (temp) => {
+  return Math.round(9 / 5 * (temp - 273) + 32);
+}
 
-export async function fetchWeather(type, lat, lon){
-  const uri = 'https://api.wunderground.com/api/';
-  const key = 'bcdeab02bf65e45e';
-  const url = uri + key + '/' + type + '/q/' + lat + ',' + lon + '.json';
-
-  try {
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log(json);
-    switch (type) {
-          case 'conditions':
-            return {
-              currentTemp: json.current_observation.temp_f + "\xB0 F",
-              conditionPic: json.current_observation.icon_url,
-              conditions: json.current_observation.weather,
-              city: json.current_observation.display_location.city,
-              state: json.current_observation.display_location.state,
-              country: json.current_observation.display_location.country
-            };
-          case 'forecast10day':
-            return {
-              forecast: json.forecast.simpleforecast.forecastday,
-              loaded: true
-            };
-          case 'hourly':
-            return {
-              hourlyForecast: json.hourly_forecast, 
-              loaded: true
-            };
-          default:
-            return;
-          }
+const getConditionsIcon = (conditions) => {
+  switch(conditions){
+    case 'Clouds':
+      return '../../assets/weather-icons/clouds.png';
+    default:
+      return;
   }
-
-  catch (err) {
-    console.log("fetch failed: " + err);
-  }
-  // return fetch(url).then(response => {
-  //       console.log("url: " + url);
-  //       console.log("response: " + response.json());
-  //       response.json()})
-  //     .then(json => {
-  //       console.log("json: " + json);
-  //       console.log('type: ' + type);
-  //       switch (type) {
-  //         case 'conditions':
-  //           return {
-  //             currentTemp: json.current_observation.temp_f + "\xB0 F",
-  //             conditionPic: json.current_observation.icon_url,
-  //             conditions: json.current_observation.weather,
-  //             city: json.current_observation.display_location.city,
-  //             state: json.current_observation.display_location.state,
-  //             country: json.current_observation.display_location.country
-  //           };
-  //         case 'forecast10day':
-  //           return {
-  //             forecast: json.forecast.simpleforecast.forecastday,
-  //             loaded: true
-  //           };
-  //         case 'hourly':
-  //           return {
-  //             hourlyForecast: json.hourly_forecast, 
-  //             loaded: true
-  //           };
-  //         default:
-  //           return;
-  //         }});
 
 }
+
+
+async function setUrl(forecastType, lat, lon){
+  switch(forecastType) {
+    case 'conditions':
+      return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${openWeatherKey}`;
+    case 'hourly':
+      return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${openWeatherKey}`;
+    case 'forecast10day':
+      return `https://api.wunderground.com/api/${wundergroundKey}/forecast10day/q/${lat},${lon}.json`;
+    default:
+      return;
+  }
+}
+
+const parseData = (forecastType, data) => {
+  switch(forecastType) {
+    case 'conditions':
+      const currentTemp = convertToF(data.data.main.temp);
+      const conditionsIcon = getConditionsIcon(data.data.weather.main);
+      // console.log(currentTemp);
+      return {
+        currentTemp: currentTemp,
+        pressure: data.data.main.pressure,
+        humidity: data.data.main.humidity,
+        conditionsIcon: conditionsIcon,
+        displayLocation: `${data.data.name}, ${data.data.sys.country}`
+      }
+    case 'hourly':
+        let hourlyData = [];
+        hourlyData = data.data.list.map(hour => {
+          const temp = convertToF(hour.main.temp);
+          return {
+            time: hour.dt_txt,
+            temp: temp,
+            pressure: hour.main.pressure,
+            humidity: hour.main.humidity,
+            weather: hour.weather[0].description
+          }
+        })
+      return hourlyData;
+    case 'forecast10day':
+      let dailyData = data.data.forecast.simpleforecast.forecastday.map(day => {
+        return {
+          day: day.date.pretty,
+          high: day.high.fahrenheit,
+          low: day.low.fahrenheit,
+          conditions: day.conditions,
+          humidity: day.avehumidity
+        }
+      });
+      return dailyData;
+    default:
+      return;
+  }
+}
+
+export const fetchWeather = (forecastType, lat, lon) =>{
+  
+    return setUrl(forecastType, lat, lon)
+      .then(url => {
+        // console.log(url);
+        return axios.get(url);
+      })
+        .then(results => {
+          // console.log(results.data);
+          return results;
+        })
+        .then(results => {
+          const data = parseData(forecastType, results);
+          // console.log(data);
+          return data;
+        })
+        .catch(err => console.log(err));
+    }
+
+fetchWeather('conditions', 33.9526, 84.5499);
+

@@ -22,8 +22,8 @@ class App extends Component {
       showWeekly: false,
       showHourly: false,
       currentTemp: '',
-      conditionPic: '',
-      conditions: '',
+      pressure: '',
+      humidity: '',
     };
   }
 
@@ -34,20 +34,20 @@ class App extends Component {
   };
 
   handleSelect = (address) => {
-    console.log("address" + address);
+    // console.log("address" + address);
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(coords => {
-        console.log("coords: " , coords);
+        // console.log("coords: " , coords);
         fetchWeather('conditions', coords.lat, coords.lng)
         .then(data => {
-          console.log(data);
-          console.log(address);
+          // console.log(data);
+          // console.log(address);
           this.setState({
             currentTemp: data.currentTemp,
-            conditionPic: data.conditionPic,
-            conditions: data.conditions,
-            displayLocation: address,
+            pressure: data.pressure,
+            humidity: data.humidity,
+            displayLocation: data.displayLocation,
             address: ''
           });
         });
@@ -78,17 +78,19 @@ class App extends Component {
   }
 
   componentDidMount() {
+    
     navigator.geolocation.getCurrentPosition((pos) => {
+
       fetchWeather('conditions', pos.coords.latitude, pos.coords.longitude)
         .then(data => {
-          console.log(data);
-          const address = data.city + ', ' + data.state + ', ' + data.country;
-          console.log(address);
+          // console.log(`data: ${data}`);
           this.setState({
+            displayLocation: data.displayLocation,
             currentTemp: data.currentTemp,
-            conditionPic: data.conditionPic,
-            conditions: data.conditions,
-            displayLocation: address
+            pressure: data.pressure,
+            humidity: data.humidity,
+            conditionsIcon: data.conditionsIcon
+           
           });
         });
     });
@@ -109,6 +111,7 @@ class App extends Component {
       latitude={this.state.coords.lat}
       longitude={this.state.coords.lng}/>);
   }
+    
     return (
       <div className="App">
         <header className="main-display">
@@ -118,9 +121,10 @@ class App extends Component {
             address={this.state.address} />
           <CurrentWeather
             currentTemp={this.state.currentTemp}
-            conditionPic={this.state.conditionPic}
-            conditions={this.state.conditions}
-            location={this.state.displayLocation} />
+            pressure={this.state.pressure}
+            humidity={this.state.humidity}
+            location={this.state.displayLocation}
+            conditionsIcon={this.state.conditionsIcon} />
         </header>
         <div className="button-menu">
           <button className="btn" onClick={this.toggleWeekly}>Daily Forecast</button>

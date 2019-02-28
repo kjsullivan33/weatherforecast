@@ -1,4 +1,3 @@
-//http://api.wunderground.com/api/bcdeab02bf65e45e/conditions/q/33.933886199999996,-84.4902245
 
 import React, { Component } from 'react';
 import './CurrentWeather.scss';
@@ -13,9 +12,10 @@ class CurrentWeather extends Component {
     return (
       <div className="current-weather" >
         <p className="location" >{this.props.location}</p>
-        <img className="condition-pic" src={this.props.conditionPic} alt={this.props.conditions} />
-        <div className="current-temp" >{this.props.currentTemp}</div>
-        <p className="conditions" >{this.props.conditions} </p>
+        <div className="current-temp" >{this.props.currentTemp}F</div>
+        {/* <img src={require(`${this.props.conditionsIcon}`)} alt="conditions"></img> */}
+        <p className="conditions" > Humidity: {this.props.humidity}% </p>
+        <p className="conditions">Pressure: {this.props.pressure} hpa</p>
       </div>
     )
   }

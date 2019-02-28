@@ -15,9 +15,9 @@ class Hourly extends Component {
   componentDidMount() {
 
     fetchWeather('hourly', this.props.latitude, this.props.longitude).then(data => {
-      console.log(data);
+      // console.log(`hourly data: ${data}`);
       this.setState({
-        hourlyForecast: data.hourlyForecast,
+        hourlyForecast: data,
         loaded: true
       });
     });
@@ -28,14 +28,15 @@ class Hourly extends Component {
   render() {
     let hourly = '';
     if (this.state.loaded) {
-      hourly = this.state.hourlyForecast.map((item, index) => {
+      hourly = this.state.hourlyForecast.map((hour, index) => {
         return (
           <Hour
             key={index}
-            time={item.FCTTIME.civil}
-            temp={item.temp.english}
-            conditions={item.condition}
-            day={item.FCTTIME.weekday_name} />
+            time={hour.time}
+            temp={hour.temp}
+            weather={hour.weather}
+            pressure={hour.pressure}
+            humidity={hour.humidity} />
         );
       });
     } else {
