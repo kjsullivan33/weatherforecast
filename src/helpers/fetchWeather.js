@@ -3,8 +3,8 @@ const axios = require ('axios');
 require('dotenv').config();
 
 
-const openWeatherKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-const wundergroundKey = process.env.REACT_APP_WUNDERGROUND_API_KEY;
+const openWeatherKey = '20c71335cee94b6674b4926f6e21035a';
+const wundergroundKey = 'bcdeab02bf65e45e';
 
 const convertToF = (temp) => {
   return Math.round(9 / 5 * (temp - 273) + 32);
